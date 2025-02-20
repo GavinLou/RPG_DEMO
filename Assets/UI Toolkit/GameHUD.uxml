@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/GameUSS.uss?fileID=7433441132597879392&amp;guid=efecbdaedcd79434d8f46b988bdc9bdd&amp;type=3#GameUSS" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 100px; height: 100px; left: 30px; top: 30px; right: auto; bottom: auto; background-image: url(&apos;project://database/Assets/Image/Logo/LOGO-1.png?fileID=2800000&amp;guid=edfbf3532f2cee84aa328bd725bb6692&amp;type=3#LOGO-1&apos;);">
+        <ui:Button text="Button" display-tooltip-when-elided="true" />
+    </ui:VisualElement>
+    <ui:Label text="第14屆超級資優生-小羊的修學之旅" name="Label" />
+</ui:UXML>
