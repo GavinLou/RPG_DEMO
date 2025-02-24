@@ -7,6 +7,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+using FirebaseWebGL.Scripts.FirebaseBridge;
+using FirebaseWebGL.Scripts.Objects;
+
 
 namespace CSIE
 {
@@ -54,48 +57,17 @@ namespace CSIE
             yield return new WaitForSeconds(3 - (nowTimestamp - awaitTimestamp) <= 0 ? 0 : 3 - (nowTimestamp - awaitTimestamp));
             commonProcess.SplashOut();
 
-            LoginUser("test01@gmail.com", "test01");
+
+            FirebaseAuth.SignInWithEmailAndPassword("test01@gmail.com", "test01", "GameObject", "DisplayInfo", "DisplayErrorObject");
+
         }
-
-        [DllImport("__Internal")]
-        private static extern void SignInWithEmail(string email, string password);
-
-        [DllImport("__Internal")]
-        private static extern void SaveDataToFirestore(string userId, int score);
-
-        private string userId = "test01@gmail.com";
-
-        // 這裡模擬登入，實際中可能來自用戶輸入
-        public void LoginUser(string email, string password)
+        public void DisplayInfo(string info)
         {
-            SignInWithEmail(email, password);
+            Debug.Log(info);
         }
-
-        // 登入成功的回調函數
-        public void OnFirebaseAuthSuccess(string uid)
+        public void DisplayError(string error)
         {
-            Debug.Log("登入成功！UID：" + uid);
-            userId = uid;
-        }
-
-        // 登入失敗的回調函數
-        public void OnFirebaseAuthFailed(string errorMessage)
-        {
-            Debug.LogError("登入失敗：" + errorMessage);
-        }
-
-        // 儲存分數的函數
-        public void SaveScore(int score)
-        {
-            if (!string.IsNullOrEmpty(userId))
-            {
-                SaveDataToFirestore(userId, score);
-            }
-            else
-            {
-                Debug.LogError("請先登入！");
-
-            }
+            Debug.LogError(error);
         }
     }
 }
