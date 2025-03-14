@@ -6,8 +6,7 @@ using UnityEngine;
 public class CommonProcess : MonoBehaviour
 {
     [SerializeField]
-    private GameObject splashScreen;
-
+    public GameObject splashScreen;
 
     //[SerializeField]
     //private PromptManager promptManager;
@@ -19,24 +18,13 @@ public class CommonProcess : MonoBehaviour
 
     public void SplashIn(Action action = null)
     {
-        splashScreen.GetComponent<Animator>().Play("Splash@In");
+        splashScreen.GetComponent<Animator>().SetTrigger("In");
         splashScreen.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if (action != null)
-        {
-            StartCoroutine(SplashAction(action));
-        }
     }
-
-    private IEnumerator SplashAction(Action action)
-    {
-        yield return new WaitForSeconds(2);
-        action.Invoke();
-    }
-
     public void SplashOut()
     {
+        splashScreen.GetComponent<Animator>().SetTrigger("Out");
         splashScreen.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        splashScreen.GetComponent<Animator>().Play("Splash@Out");
     }
     void Start()
     {
